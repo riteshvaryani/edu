@@ -1,0 +1,85 @@
+1 finished
+2 program process, thread, interprocess communicaiton, multiprocesssing, thread unsafe
+3 concurecncy vs paraalesim: concurrent systems -> goal is to maximize throughput & minimize latency. Concurrency is about dealing with lots of things at once. Parallelism is doing lots of things at once.
+4 cooperative vs preemptive multitasking
+5 asynchronous programming
+6 cpu/mem/n/w resources/ disk storage cpu calculation: matrix mult, image processing, sum n numbers. iobound: operatiosn that write or read form main memory or n/w interfaces
+7 -
+8 -
+9
+10 mutex smaphore.binry semaphore != mutex. A mutex is owned by the
+thread  acquiring  it  till  the  point  the  owning-thread  releases  it, whereas for a semaphore theres no notion of ownership Another  distinction  between  a  semaphore  and  a  mutex  is  that semaphores can be used for signaling amongst threads. Mutex is owned by a thread, whereas a semaphore has no concept of ownership
+11 monitor. mutex vs cv You can think of a monitor as a mutex with a wait set.
+12  wait()   and  notify()   can  only  be  called  on  an
+object  once  the  calling  thread  becomes  the  owner  of  the  monitor.  The
+ownership of the monitor can be achieved in the following ways:
+the method the thread is executing has synchronized in its signature
+the thread is executing a block that is synchronized on the object on
+which wait or notify will be called
+in  case  of  a  class,  the  thread  is  executing  a  static  method  which  is
+synchronized.
+illegalmonitorstateexception . hoare vs mesa monitors. java uses mesa. while loop needed. A
+monitor is made up of a mutex and a condition variable.
+13 Semaphores are lightweight when compared to monitors, which are
+bloated. However, the tendency to misuse semaphores is far greater
+than  monitors.  When  using  a  semaphore  and  mutex  pair  as  an
+alternative to a monitor, it is easy to lock the wrong mutex or just
+forget to lock altogether. monitors  take  care  of  atomically  acquiring  the
+necessary locks whereas, with semaphores, the onus of appropriately
+acquiring  and  releasing  locks  is  on  the  developer,  which  can  be
+error-prone
+14 amdahls law
+15 moores law
+16 once monitor is obtained by the object, it has the first right on all synchronized methods. no other object can execute(they will be blocked waiting) the synchronized method unless this object releases the monitor
+A  classic  newbie  mistake  is  to  synchronize  on  an  object  and  then
+somewhere in the code reassign the object
+use diff lock for reading 
+The solution is to lock at a finer granularity, possibly use two
+different locks for each property so that both can be accessed in parallel.
+ We synchronize on a Boolean object in the first thread but
+sleep before we call  wait()  on the object. While the first thread is asleep,
+the  second  thread  goes  on  to  change  the  flag ''s  value.  When  the  first
+thread  wakes  up  and  attempts  to  invoke  wait() ,  it  is  met  with  a
+IllegalMonitorState exception
+17 read wait ntify again after more context is achieved wait notify, give up control and monitor when notify is called
+18 interrupting threads in java
+19 Volatile value always written and read from main memory; not processor cache. single writer multiple read, use voaltile otherwise use synchronized for atomic writes
+20 Reentrant locks -> its onwn condition vars, concurrent basics package
+21 missed signals, using await is wrong, use while loop, or use semaphore
+22 good thread bad thread -> always release semahphore in finally
+23 spurious wakeups, using while loop on wait condition
+24 lock fairness, short timed tasks -> perf penalty executorpool
+25 cache  coherence  problem
+26
+27 real JMM model - reread with fresh mind
+28 blocking queue bounded buffer problem - notifyall, exceptions thrown, lock pbject on exectuion
+29
+30 why locking needed in semaphore
+31 rate limiting token code =- good code to know and learn
+32 really imp
+33
+34
+35
+36
+37 wait should always be used in a while loop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+54 executor framework intro
+55 newbie sequential to multithreading, problme with infinite threads , application unresponsive
+56
+57 Types of threadpools. Executor lifecycle
+
